@@ -10,7 +10,7 @@ app.use(cors({
 
 require("dotenv").config();
 const connectDB = require('./db');
-const pioneers = require('./routes/pioneerRoutes')
+const pioneers = require('./pioneerRoutes')
 
 //body parser
 app.use(express.json());
