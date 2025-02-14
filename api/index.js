@@ -1,6 +1,7 @@
 const express = require('express')
 const app = express()
 const cors = require("cors");
+const port = 3000
 
 app.use(cors({
   origin: "*", // Allow all origins (not recommended for production)
@@ -20,5 +21,9 @@ app.use('/api', pioneers)
 
 app.get('/', (req, res) => {
   res.send('Hello World!')
+})
+
+app.listen(port, () => {
+  console.log(`Example app listening on port ${port}`)
 })
 
