@@ -1,6 +1,13 @@
 const express = require('express')
 const app = express()
-const port = 3000
+const cors = require("cors");
+
+app.use(cors({
+  origin: "*", // Allow all origins (not recommended for production)
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  allowedHeaders: ["Content-Type", "Authorization"]
+}));
+
 require("dotenv").config();
 const connectDB = require('./db');
 const pioneers = require('./routes/pioneerRoutes')
@@ -15,6 +22,3 @@ app.get('/', (req, res) => {
   res.send('Hello World!')
 })
 
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`)
-})
