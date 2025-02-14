@@ -1,15 +1,20 @@
-const express = require("express");
-const cors = require("cors");
-const mongoose = require("mongoose");
+const express = require('express')
+const app = express()
+const port = 3000
 require("dotenv").config();
+const connectDB = require('./db');
+const pioneers = require('./routes/pioneerRoutes')
 
-const app = express();
-app.use(cors());
+//body parser
 app.use(express.json());
+connectDB();
 
-const pioneerRoutes = require("./pioneerRoutes"); // Import routes
-app.use("/api/pioneers", pioneerRoutes); // Define route prefix
+app.use('/api', pioneers)
 
-module.exports = app;
+app.get('/', (req, res) => {
+  res.send('Hello World!')
+})
 
-
+app.listen(port, () => {
+  console.log(`Example app listening on port ${port}`)
+})
